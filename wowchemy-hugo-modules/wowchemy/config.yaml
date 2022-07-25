@@ -1,26 +1,26 @@
-mediaTypes:
-  application/manifest+json:
-    suffixes: [webmanifest]
-  text/netlify:
-    delimiter: ''
-    suffixes: ['']
-outputFormats:
-  WebAppManifest:
-    mediaType: application/manifest+json
-    rel: manifest
-  headers:
-    baseName: _headers
-    isPlainText: true
-    mediatype: text/netlify
-    notAlternative: true
-  redirects:
-    baseName: _redirects
-    isPlainText: true
-    mediatype: text/netlify
-    notAlternative: true
+markup:
+  defaultMarkdownHandler: goldmark
+  goldmark:
+    renderer:
+      unsafe: true
+    parser:
+      attribute:
+        block: true
+        title: true
+  highlight:
+    codeFences: true
+    noHl: false
+    lineNumbersInTable: false
+    noClasses: false
+    guessSyntax: true
+  tableOfContents:
+    startLevel: 2
+    endLevel: 3
+sitemap:
+  changefreq: weekly
 module:
   hugoVersion:
-    min: '0.78.2'
+    min: '0.95.0'
     extended: true
   mounts:
     - source: content
@@ -37,9 +37,13 @@ module:
       target: i18n
     - source: archetypes
       target: archetypes
+security:
+  funcs:
+    getenv:
+      - ^HUGO_
+      - ^WC_
 params:
-  theme: minimal
-  font: native
-  date_format: 'Jan 2, 2006'
-  time_format: '3:04 PM'
-  address_format: en-us
+  locale:
+    date_format: 'Jan 2, 2006'
+    time_format: '3:04 PM'
+    address_format: en-us

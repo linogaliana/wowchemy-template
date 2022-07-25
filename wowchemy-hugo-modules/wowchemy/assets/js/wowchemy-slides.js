@@ -1,13 +1,11 @@
 /*
-  global RevealMarkdown, RevealHighlight, RevealSearch, RevealNotes, RevealMath, RevealZoom, Reveal, mermaid, RevealMenu
+  global RevealMarkdown, RevealSearch, RevealNotes, RevealMath, RevealZoom, Reveal, mermaid, RevealMenu
 */
 
 import * as params from '@params';
 
-import {fixMermaid} from './wowchemy-utils';
-
 // Enable core slide features.
-var enabledPlugins = [RevealMarkdown, RevealHighlight, RevealSearch, RevealNotes, RevealMath, RevealZoom];
+var enabledPlugins = [RevealMarkdown, RevealSearch, RevealNotes, RevealMath.MathJax3, RevealZoom];
 
 const isObject = function (o) {
   return o === Object(o) && !isArray(o) && typeof o !== 'function';
@@ -140,9 +138,4 @@ if (params.slides.diagram) {
   mermaidOptions['startOnLoad'] = false;
 
   mermaid.initialize(mermaidOptions);
-
-  // Fix Mermaid conflict with Hightlight JS.
-  document.addEventListener('DOMContentLoaded', function () {
-    fixMermaid();
-  });
 }
